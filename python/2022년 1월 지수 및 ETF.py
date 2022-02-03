@@ -1,15 +1,10 @@
-import os
 from tkinter import *
-from tkinter import filedialog
-from tkinter.filedialog import askopenfilename
 import matplotlib.pyplot as plt
-import numpy as np
-
 import FinanceDataReader as fdr
 
-# 2021년 ~ 2022년 1월 23일 
+# 2022년 ~ 2022년 1월 23일 
 # 종합지수 , 반도체 ,2차전지 , 바이오 ,금융 지수 비교
-start_date = ('2022-01-04')
+start_date = ('2022-01-03')
 end_date  = ('2022-01-28')
 
 kospi = fdr.DataReader('KS11',start_date,end_date)
@@ -37,7 +32,6 @@ date=kospi.index
 
 #종가 불러오기
 kospi=kospi['Close']
-
 se=se['Close']
 ba=ba['Close']
 bio = bio['Close']
@@ -46,7 +40,6 @@ med = med['Close']
 consu = consu['Close']
 game = game['Close']
 co = co['Close']
-
 
 
 # 종가 가격 코스피 기준 조정 함수
@@ -61,26 +54,15 @@ def cor(ticker):
 
 # 2022/01/04 코스피 지수  2991
 
-# print(cor('091230'))  #0.073
-# print(cor('364960'))  #0.260
-# print(cor('244580'))  #0.241
-# print(cor('139270'))  #0.419
-# print(cor('098560'))  #0.310
-# print(cor('266410'))  #0.361
-# print(cor('300610'))  #0.157
-# print(cor('229200'))   #0.202
-
-
-
 y1 = kospi        
-y2 = se*0.073
-y3 = ba *0.260
-y4 = bio *0.241
-y5 = inv *0.419
-y6 = med *0.310
-y7 = consu * 0.361
-y8 = game * 0.157
-y9 = co * 0.202
+y2 = se * float(cor('091230'))
+y3 = ba  * float(cor('364960'))
+y4 = bio * float(cor('244580'))
+y5 = inv * float(cor('139270'))
+y6 = med * float(cor('098560'))
+y7 = consu * float(cor('266410')) 
+y8 = game *float(cor('300610'))
+y9 = co * float(cor('229200'))
 
 
 x1=date
