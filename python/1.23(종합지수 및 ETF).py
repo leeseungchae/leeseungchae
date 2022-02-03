@@ -2,7 +2,7 @@ from tkinter import *
 import matplotlib.pyplot as plt
 import FinanceDataReader as fdr
 
-# 2021년 ~ 2022년 1월 23일 
+# 2021년 ~ 2022년 1월 28일 
 # 종합지수 , 반도체 ,2차전지 , 바이오 ,금융 지수 비교
 start_date = ('2022-01-03')
 end_date  = ('2022-01-28')
