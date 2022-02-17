@@ -14,7 +14,7 @@ time.sleep(1)
 input_js ='\
     document.getElementById("id").value="{id}";\
     document.getElementById("pw").value="{pw}";\
-        ' .format(id="ztmdco",pw="1994ghost.")
+        ' .format(id="",pw="")
 time.sleep(3)
 browser.execute_script(input_js)
 time.sleep(2)
