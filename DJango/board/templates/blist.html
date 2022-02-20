@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    {% block signup_style%}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/fonts/icomoon/style.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css'%}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}">
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js'%}"></script>
+    <script src="{% static 'assets/js/popper.min.js'%}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'assets/js/main.js'%}"></script>
+    {% endblock%}
+    <title>Table #4</title>
+  </head>
+  <body>
+  
+    {% block content %}
+    <section id="main" class="containers">
+					<header>
+						<h2>Board</h2>
+						<p>Just an assorted selection of elements.</p>
+					</header>
+    
+
+  <div class="content">
+    <div class="container">
+      <h2 class="mb-5"></h2>
+
+      <div class="table-responsive custom-table-responsive">
+        <section class="box">
+
+        <table class="table custom-table">
+          <thead>
+            <tr>      
+              <th scope="col">No.</th>
+              <th scope="col">Name</th>
+              <th scope="col">Title</th>
+              <th scope="col">Content</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+  
+          {% if blist%}
+            {% for bl in blist%}
+              
+            <tr>
+                <td>
+                  {{bl.b_no}}
+                </td>
+                <td><a href="#">{{bl.member.u_name}}</a></td>
+                <td>
+                  <small class="d-block">{{bl.b_title}}</small>
+                </td>
+                <td>{{bl.b_content}}</td>
+                <td>{{bl.b_email}}</td>
+          
+
+              </tr>
+            {% endfor%}
+
+          {% else%}
+            <tr>
+              <td colspan="5"></td>
+            </tr>
+          {% endif%}
+            
+            
+          </tbody>
+        </table>
+      </section>
+      </div>
+
+
+    </div>
+
+  </div>
+</section>
+  {% endblock%}
+
+  </body>
+</html>

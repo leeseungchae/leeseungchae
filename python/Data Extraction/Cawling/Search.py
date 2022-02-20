@@ -32,5 +32,3 @@ for n in range(1,30000,10):  #() 1,첫페이지 10간격으로 다음페이지 3
         i= i.get_text()
         i = re.sub('[-=+,#/\?:^.@*\"※~ㆍ!』‘|\(\)\[\]`\'…》\”\“""\’·]', '', i) # 특수문자 제거
         csv_writer.writerow((i,others)) 
-
-#wefqwefqwef
