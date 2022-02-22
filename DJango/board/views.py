@@ -1,15 +1,17 @@
 from django.shortcuts import render
 from board.models import board
 
-# Create your views here.
+# 게시판 리스트
 def blist(request):
-    
     qs = board.objects.all().order_by("-b_no")
     context= {"blist":qs}
-    
-    
-    
     return render(request,"blist.html",context)
+
+def write(request):
+    
+    return render(request,"contact.html")
+
+
 
 
 def contact(request):

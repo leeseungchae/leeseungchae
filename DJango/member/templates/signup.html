@@ -1,12 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+
     {% block signup_style%}
     <!-- Font Icon -->
     <link rel="stylesheet" href="{% static 'assets/fonts/material-icon/css/material-design-iconic-font.min.css'%}">
@@ -14,9 +8,77 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
     <script src="{% static 'assets/vendor/jquery/jquery.min.js'%}"></script>
     <script src="{% static 'assets/js/main.js'%}"></script>
+    <style>
+    .red{color:red}
+    .blue{color:blue}
+    </style>
+
+
+
+<script>
+    function emailch() {
+
+        if($("#email").val()==''|| $("#email").val()==null){
+            $("email").focus()
+                return false }
+            $.ajax({
+                url:"{% url 'member:emailch' %}",
+                type:"get",
+                data:{"user_email":$("#email").val()},          
+                success:function(data){
+                    if(data.result=="false"){
+                        $("#emailch_title").addClass("red")
+                        $("#emailch_title").text("중복된 이메일 입니다.")
+                        }
+                    
+                         
+                    }
+                ,error:function(){
+                    //alert("ajax 통신실패")
+                    }
+                })}
+    function repw() {       
+
+        if($("#pw1").val()==$("#pw2").val()){
+           
+            $("#emailch_re_pw").removeClass()
+            $("#emailch_re_pw").addClass('blue')
+            $("#emailch_re_pw").text('비밀번호가 일치합니다')
+        }else{
+            $("#emailch_re_pw").text('비밀번호가 일치하지 않습니다')
+            $("#pw2").val('')
+            $("#pw2").focus()
+            $("#emailch_re_pw").removeClass()
+            $('#emailch_re_pw').addClass('red')
+            return false
+        }
+      //  if($("#pw").val() != $("#re_pw").val()){
+       //     $("#emailch_re_pw").addClass("red")
+//$("#emailch_re_pw").text("비밀번호가 일치하지 않습니다.")
+        
+        }                
+          
+
+    
+
+        
+
+
+    
+    
+
+    
+    </script>
+
+    
+    
+    
+    
+    
+    
+    
     {% endblock%}
-</head>
-<body>
+
     {% block content%}
   
     <div class="main">
@@ -27,29 +89,36 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Sign up</h2>
-                        <form method="POST" class="register-form" id="register-form">
+                        <form method="post" name="agree" action="{% url 'member:signup' %}" 
+
+                        class="register-form" id="register-form">
+                        {% csrf_token %}
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name"/>
+                                <input type="text" name="first_name" id="first_name" placeholder="First_Name" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="last_name" id="last_name" placeholder="Last_Name" required/>
                             </div>
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="id" id="id" placeholder="Your Email"/>
+                                <input type="email"  name="email" id="email" placeholder="Your Email" required/>
+                                <h5 id="emailch_title"></h5>
                             </div>
                             <div class="form-group">
                                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password"/>
+                                <input type="password" name="pw1"onclick= "emailch()" id="pw1" placeholder="Password" required/>
+                                <h5 id="emailch_pw"></h5>
                             </div>
                             <div class="form-group">
                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                                <input type="password" name="pw2" onclick="repw()"  id="pw2" placeholder="Repeat your password" required/>
+                                <h5 id="emailch_re_pw"></h5>
                             </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                            </div>
+                
                             <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                                <input type="submit"  name="signup" id="signup" class="form-submit" value="Register"/>
                             </div>
                         </form>
                     </div>
@@ -62,7 +131,3 @@
         </section>
     {% endblock%}
  
-    <!-- JS -->
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-</html>
